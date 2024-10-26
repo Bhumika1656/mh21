@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocational Education Platform</title>
+    <link rel="stylesheet" href="styles.css">    
+    <style>
+        body {
+            background-image: url('https://diplomatist.com/wp-content/uploads/2020/10/vocationa.jpg');
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat; 
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        header, footer {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .hero {
+            text-align: center;
+            color: white;
+            margin-top: 50px;
+        }
+        .btn {
+            background-color: #ff9900;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .chatbot-header {
+            background-color: #ff9900;
+            color: white;
+            padding: 10px;
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+        }
+        .chatbot-body {
+            padding: 10px;
+            height: 200px;
+            overflow-y: auto;
+        }
+        .chatbot-input {
+            display: flex;
+            border-top: 1px solid #ddd;
+        }
+        .chatbot-input input {
+            width: 80%;
+            padding: 10px;
+            border: none;
+            border-radius: 0 0 0 10px;
+        }
+        .chatbot-input button {
+            width: 20%;
+            background-color: #ff9900;
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 0 0 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Vocational Education Platform</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="hero">
+        <h2>Empower Your Future with Vocational Training</h2>
+        <p>Explore a variety of skill-based courses to jumpstart your career.</p>
+        <a href="courses.html" class="btn" id="explore-courses-btn">Explore Courses</a>
+    </section>
+
+    <!-- Chatbot UI -->
+    <div class="chatbot-container">
+        <div class="chatbot-header">
+            <h4>Vocational Chatbot</h4>
+        </div>
+        <div class="chatbot-body" id="chatbot-body">
+            <p><b>Chatbot:</b> Hi! How can I assist you with vocational training today?</p>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+   
+
+    <script>
+        async function sendMessage() {
+            const userInput = document.getElementById("user-input").value;
+            const chatbotBody = document.getElementById("chatbot-body");
+    
+            if (userInput.trim() !== "") {
+                const userMessage = <p><b>You:</b> ${userInput}</p>;
+                chatbotBody.innerHTML += userMessage;
+    
+                // Fetch response from Google API
+                const chatbotResponse = await getChatbotResponseFromAPI(userInput);
+                chatbotBody.innerHTML += <p><b>Chatbot:</b> ${chatbotResponse}</p>;
+    
+                // Scroll to the bottom of the chat
+                chatbotBody.scrollTop = chatbotBody.scrollHeight;
+    
+                // Clear the input field
+                document.getElementById("user-input").value = "";
+            }
+        }
+    
+        
+    </script>
+    <script src="script1.js"></script>
+    
+</body>
+</html>
